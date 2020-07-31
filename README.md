@@ -149,4 +149,4 @@ The Cuttr javascript/jQuery plugin targets modern browsers that support ES5, mea
 
 ---
 
-Created and maintained by [DEVSK](https://github.com/devsk).
+Created and maintained by [DEVSK](https://github.com/d-e-v-s-k).

@@ -7,6 +7,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:d-e-v-s-k/cuttr-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/d-e-v-s-k/cuttr-js/issues"
+  },
   "keywords": [
     "ellipsis",
     "truncate",
@@ -29,7 +36,7 @@
     "overflow",
     "dots"
   ],
-  "author": "DEVSK",
+  "author": "DEVSK https://github.com/d-e-v-s-k/",
   "license": "GPL-3.0",
   "homepage": "http://cuttr.kulahs.de",
   "devDependencies": {
