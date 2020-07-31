@@ -21,8 +21,19 @@ More informations and examples available [here](http://cuttr.kulahs.de/).
 ## Install
 ### Download
 
-- [###file###](###url###) minified, or
-- [###file###](###url###) un-minified
+- [cuttr.min.js](https://unpkg.com/cuttr@1.0.0/dist/cuttr.min.js) minified, or
+- [cuttr.js](https://unpkg.com/cuttr@1.0.0/dist/cuttr.js) un-minified
+
+
+### CDN
+
+Link directly to Cuttr files on [unpkg](https://unpkg.com).
+
+``` html
+<script src="https://unpkg.com/cuttr@1.0.0/dist/cuttr.min.js"></script>
+<!-- or -->
+<script src="https://unpkg.com/cuttr@1.0.0/dist/cuttr.js"></script>
+```
 
 ### Package managers
 npm
@@ -34,15 +45,15 @@ npm install cuttr --save
 bower
 
 ```sh
-bower install cuttr --save
+bower install d-e-v-s-k/cuttr-js --save
 ```
-
+<!--
 yarn
 
 ```sh
 yarn add cuttr
 ```
-
+-->
 
 ## License
 

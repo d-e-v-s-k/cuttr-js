@@ -34,7 +34,8 @@
     "text",
     "text-overflow",
     "overflow",
-    "dots"
+    "dots",
+    "cuttr"
   ],
   "author": "DEVSK https://github.com/d-e-v-s-k/",
   "license": "GPL-3.0",

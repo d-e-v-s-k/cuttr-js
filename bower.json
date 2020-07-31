@@ -26,7 +26,8 @@
     "text",
     "text-overflow",
     "overflow",
-    "dots"
+    "dots",
+    "cuttr"
   ],
   "homepage": "http://cuttr.kulahs.de",
   "ignore": [
@@ -35,5 +36,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  {
+    "dependencies": {
+      "angular-cli": "angular/angular-cli#^9.1.3"
+    }
+  }
 }
