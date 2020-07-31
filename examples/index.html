@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuttr.js - Examples</title>
+</head>
+<body>
+
+<h1>Examples</h1>
+
+<h2>Character truncation</h2>
+
+<p class="truncate" >Lorem ipsum dolor sit amet, <a href="#">link</a> consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
+<script src="../dist/cuttr.min.js"></script>
+<script>
+
+    new Cuttr('.truncate', {
+        //options here
+        truncate: 'words',
+        length: 12,
+        readMore: true,
+        readMoreText: 'Show more',
+        readLessText: 'Show less'
+    });
+
+</script>
+</body>
+</html>

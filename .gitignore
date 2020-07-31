@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+bower_components/
+node_modules/
+**/node_modules/
+src/cuttr_dev.js
