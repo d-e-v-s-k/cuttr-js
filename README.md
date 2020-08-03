@@ -2,19 +2,24 @@
 ![preview](https://raw.githubusercontent.com/d-e-v-s-k/cuttr-js/master/examples/img/cuttr-intro.png)
 
 <p align="center">
+    <a href="https://www.npmjs.com/package/cuttr">
+        <img src="https://badge.fury.io/js/cuttr.svg" alt="npm" />
+    </a>
     <a href="https://www.gnu.org/licenses/gpl-3.0.html">
         <img alt="License" src="https://img.shields.io/badge/License-GPL-blue.svg">
+    </a>
+    <a href="https://snyk.io/test/npm/cuttr/1.0.2">
+        <img src="https://snyk.io/test/npm/cuttr/1.0.2/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.0.2" style="max-width:100%;">
     </a>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K9X3RW27WJHWE&source=url">
         <img alt="License" src="https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg">
     </a>
-     &nbsp;&nbsp; | &nbsp;&nbsp; 6Kb ziped
 </p>
 
 <p align="center">Cuttr is a zero dependency, easy to use library that truncates multiple line text content (Line Clampin’) to fit within given specifications. It adds an ending string like a ellipsis (...) to indicate that there is more text available than currently visible.</p>
 
 * Multiple truncation methods
-* Option to maintain original text after truncation
+* Truncate text without breaking the HTML <!-- * Option to maintain original text after truncation -->
 * Custom ellipsis strings
 * Optional "Read more" anchor
 
@@ -44,6 +49,12 @@ npm
 
 ```sh
 npm install cuttr --save
+```
+
+yarn
+
+```sh
+yarn add cuttr
 ```
 
 bower
