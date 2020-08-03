@@ -29,17 +29,12 @@
     "dots",
     "cuttr"
   ],
-  "homepage": "http://cuttr.kulahs.de",
+  "homepage": "https://cuttr.kulahs.de",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ],
-  {
-    "dependencies": {
-      "angular-cli": "angular/angular-cli#^9.1.3"
-    }
-  }
+  ]
 }

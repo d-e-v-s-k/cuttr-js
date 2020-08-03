@@ -1,12 +1,12 @@
 /*!
- * Cuttr 1.0.0
- * https://github.com
+ * Cuttr 1.0.2
+ * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
  * or Cuttr Commercial License for commercial use
- * http://cuttr.kulahs.de/pricing/
+ * https://cuttr.kulahs.de/pricing/
  *
- * Copyright (C) 2020 http://cuttr.kulahs.de/ - A project by DEVSK
+ * Copyright (C) 2020 https://cuttr.kulahs.de/ - A project by DEVSK
  **/
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -136,15 +136,16 @@
         //  truncate words
 
         case 'words':
-          var words = str.split(' '); //  check if content (string) is longer than truncation limit
+          var words = str.split(/ (?=[^>]*(?:<|$))/); //  check if content (string) is longer than truncation limit
 
           if (words.length > length) {
-            //  set current contetn truncation true and return truncated string
+            //  set current content truncation true and return truncated string
             self.options.contentTruncationState[thisIndex] = true; //  set visibility state
 
             self.options.contentVisibilityState[thisIndex] = false; //  return new string
+            //  split spaces followed by sequence of characters are NOT greater-than signs, less-than sign
 
-            return str.split(' ').splice(0, length).join(' ') + ' ' + ending + ' ';
+            return words.splice(0, length).join(' ') + ' ' + ending + ' ';
           } else {
             return str;
           }
@@ -153,7 +154,7 @@
         //  truncate full sentences
 
         case 'sentences':
-          var sentences = str.split('. '); //  check if content (string) is longer than truncation limit
+          var sentences = str.match(/[^\.!\?]+[\.!\?]+/g); //  check if content (string) is longer than truncation limit
 
           if (sentences.length > length) {
             //  set current contetn truncation true and return truncated string
@@ -161,13 +162,12 @@
 
             self.options.contentVisibilityState[thisIndex] = false; //  return new string
 
-            return str.split('. ').splice(0, length).join('. ') + '. ' + ending + ' ';
+            return sentences.splice(0, length).join(' ') + ' ' + ending + ' ';
           } else {
             return str;
           }
 
           break;
-        //  truncate by height - https://stackoverflow.com/questions/11965291/how-to-truncate-text-with-respect-to-div-height#answer-30204260
         //  truncate characters by default
 
         default:
