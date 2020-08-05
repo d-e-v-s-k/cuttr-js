@@ -8,8 +8,8 @@
     <a href="https://www.gnu.org/licenses/gpl-3.0.html">
         <img alt="License" src="https://img.shields.io/badge/License-GPL-blue.svg">
     </a>
-    <a href="https://snyk.io/test/npm/cuttr/1.1.0">
-        <img src="https://snyk.io/test/npm/cuttr/1.1.0/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.0.2" style="max-width:100%;">
+    <a href="https://snyk.io/test/npm/cuttr/1.0.2">
+        <img src="https://snyk.io/test/npm/cuttr/1.0.2/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.0.2" style="max-width:100%;">
     </a>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K9X3RW27WJHWE&source=url">
         <img alt="License" src="https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg">

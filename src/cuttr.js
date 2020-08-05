@@ -1,5 +1,5 @@
 /*!
- * Cuttr 1.0.2
+ * Cuttr 1.1.0
  * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
