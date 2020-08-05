@@ -8,15 +8,15 @@
     <a href="https://www.gnu.org/licenses/gpl-3.0.html">
         <img alt="License" src="https://img.shields.io/badge/License-GPL-blue.svg">
     </a>
-    <a href="https://snyk.io/test/npm/cuttr/1.0.2">
-        <img src="https://snyk.io/test/npm/cuttr/1.0.2/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.0.2" style="max-width:100%;">
+    <a href="https://snyk.io/test/npm/cuttr/1.1.0">
+        <img src="https://snyk.io/test/npm/cuttr/1.1.0/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.0.2" style="max-width:100%;">
     </a>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K9X3RW27WJHWE&source=url">
         <img alt="License" src="https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg">
     </a>
 </p>
 
-<p align="center">Cuttr is a zero dependency, easy to use library that truncates multiple line text content (Line Clampin’) to fit within given specifications. It adds an ending string like a ellipsis (...) to indicate that there is more text available than currently visible.</p>
+<p align="center">Cuttr is a zero dependency, easy to use JS/jQuery library that truncates multiple line text content (Line Clampin’) to fit within given specifications. It adds an ending string like a ellipsis (...) to indicate that there is more text available than currently visible.</p>
 
 * Multiple truncation methods
 * Truncate text without breaking the HTML <!-- * Option to maintain original text after truncation -->
@@ -30,8 +30,8 @@
 ## Install
 ### Download
 
-- [cuttr.min.js](https://unpkg.com/cuttr@1.0.2/dist/cuttr.min.js) minified, or
-- [cuttr.js](https://unpkg.com/cuttr@1.0.2/dist/cuttr.js) un-minified
+- [cuttr.min.js](https://unpkg.com/cuttr@1.1.0/dist/cuttr.min.js) minified, or
+- [cuttr.js](https://unpkg.com/cuttr@1.1.0/dist/cuttr.js) un-minified
 
 
 ### CDN
@@ -39,9 +39,9 @@
 Link directly to Cuttr files on [unpkg](https://unpkg.com).
 
 ``` html
-<script src="https://unpkg.com/cuttr@1.0.2/dist/cuttr.min.js"></script>
+<script src="https://unpkg.com/cuttr@1.1.0/dist/cuttr.min.js"></script>
 <!-- or -->
-<script src="https://unpkg.com/cuttr@1.0.2/dist/cuttr.js"></script>
+<script src="https://unpkg.com/cuttr@1.1.0/dist/cuttr.js"></script>
 ```
 
 ### Package managers
@@ -97,26 +97,26 @@ As you can see in the example files, you will need to include:
 All you need to do is call cuttr.js before the closing `</body>` tag.
 
 ```javascript
-new Cuttr('.cuttr', {
+new Cuttr('.element', {
     //options here
     truncate: 'words',
     length: 12
 });
 ```
-<!--
+
 #### Initialization with jQuery
 You can use cuttr.js also as a jQuery plugin if you want to!
 
 ```javascript
 $(document).ready(function() {
-    $('.cuttr').Cuttr({
+    $('.element').Cuttr({
         //options here
         truncate: 'words',
         length: 12
     });
 });
 ```
--->
+
 ### Options
 
 ```javascript
@@ -172,7 +172,7 @@ var truncateText = new Cuttr( '.container', {
 [Checkout our demos & examples page](https://cuttr.kulahs.de/examples.html)
 
 ## Browser support
-The Cuttr javascript/jQuery plugin targets modern browsers that support ES5, meaning Internet Explorer 10 and earlier are not supported.
+The Cuttr javascript / jQuery string truncation plugin targets modern browsers that support ES5, meaning Internet Explorer 10 and earlier are not supported, but with IE11 and above you are fine.
 
 ---
 

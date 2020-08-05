@@ -32,7 +32,7 @@
          * Default settings
          */
         self.options = {
-            elementsToTruncate: (el) ? document.querySelectorAll(el) : document.querySelectorAll('.cuttr'),
+            elementsToTruncate:  typeof el === 'string' ? document.querySelectorAll(el) : el,
             originalContent: [],
             contentVisibilityState: [],
             contentTruncationState: [],
@@ -74,6 +74,14 @@
          */
         function prepare() {
 
+            //  return if no target element defined
+            if (!self.options.elementsToTruncate) return;
+
+            //  set element type depending on source
+            if ( !('length' in self.options.elementsToTruncate) )
+                self.options.elementsToTruncate = [self.options.elementsToTruncate];
+
+            //  loop through target elements to truncate
             for (let i = 0; i < self.options.elementsToTruncate.length; i++) {
 
                 const currentElement  = self.options.elementsToTruncate[i];
@@ -333,3 +341,24 @@
     };
     return Cuttr;
 }));
+
+
+/**
+ * jQuery adapter for Cuttr.js 1.1.0
+ */
+if(window.jQuery && window.Cuttr){
+    (function ($, Cuttr) {
+        'use strict';
+
+        // No jQuery No Go
+        if (!$ || !Cuttr) {
+            window.fp_utils.showError('error', 'jQuery is required to use the jQuery Cuttr adapter!');
+            return;
+        }
+
+        $.fn.Cuttr = function(options) {
+            options = $.extend({}, options, {'$': $});
+            var instance = new Cuttr(this, options);
+        };
+    })(window.jQuery, window.Cuttr);
+}
