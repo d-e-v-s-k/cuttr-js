@@ -8,8 +8,8 @@
     <a href="https://www.gnu.org/licenses/gpl-3.0.html">
         <img alt="License" src="https://img.shields.io/badge/License-GPL-blue.svg">
     </a>
-    <a href="https://snyk.io/test/npm/cuttr/1.0.2">
-        <img src="https://snyk.io/test/npm/cuttr/1.0.2/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.0.2" style="max-width:100%;">
+    <a href="https://snyk.io/test/npm/cuttr/1.1.1">
+        <img src="https://snyk.io/test/npm/cuttr/1.1.1/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.0.2" style="max-width:100%;">
     </a>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K9X3RW27WJHWE&source=url">
         <img alt="License" src="https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg">
@@ -21,7 +21,7 @@
 * Multiple truncation methods
 * Truncate text without breaking the HTML <!-- * Option to maintain original text after truncation -->
 * Custom ellipsis strings
-* Optional "Read more" anchor
+* Optional "Read more" anchor to expand original content
 
 [Demos online](https://cuttr.kulahs.de/examples.html) | [Codepen Example](https://codepen.io/herkulas/pen/xxZNXGv)
 
@@ -30,8 +30,8 @@
 ## Install
 ### Download
 
-- [cuttr.min.js](https://unpkg.com/cuttr@1.1.0/dist/cuttr.min.js) minified, or
-- [cuttr.js](https://unpkg.com/cuttr@1.1.0/dist/cuttr.js) un-minified
+- [cuttr.min.js](https://unpkg.com/cuttr@1/dist/cuttr.min.js) minified, or
+- [cuttr.js](https://unpkg.com/cuttr@1/dist/cuttr.js) un-minified
 
 
 ### CDN
@@ -39,9 +39,19 @@
 Link directly to Cuttr files on [unpkg](https://unpkg.com).
 
 ``` html
-<script src="https://unpkg.com/cuttr@1.1.0/dist/cuttr.min.js"></script>
+<script src="https://unpkg.com/cuttr@1/dist/cuttr.min.js"></script>
 <!-- or -->
-<script src="https://unpkg.com/cuttr@1.1.0/dist/cuttr.js"></script>
+<script src="https://unpkg.com/cuttr@1/dist/cuttr.js"></script>
+
+```
+
+Link directly to Cuttr files on [cdnjs](https://cdnjs.com).
+
+``` html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.1.1/cuttr.min.js"></script>
+<!-- or -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.1.1/cuttr.js"></script>
+
 ```
 
 ### Package managers
@@ -89,6 +99,10 @@ As you can see in the example files, you will need to include:
 ### Including files:
 ```html
 <script type="text/javascript" src="cuttr.js"></script>
+```
+Or as a module
+```sh
+import Cuttr from 'Cuttr';
 ```
 
 ### Initialization
