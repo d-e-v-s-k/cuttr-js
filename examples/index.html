@@ -24,6 +24,10 @@
 
 <p class="truncate-words-read-more" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa? Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 
+<h2>Truncation with full content inside title-tag</h2>
+
+<p class="truncate-words-title-attr" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa? Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
 <h2>Truncate without breaking the HTML</h2>
 
 <div class="truncate-keep-html" >
@@ -62,6 +66,13 @@
         readMore: true,
         readMoreText: 'Show more',
         readLessText: 'Show less'
+    });
+
+    new Cuttr('.truncate-words-title-attr', {
+        //options here
+        truncate: 'words',
+        length: 5,
+        title: true,
     });
 
     $(document).ready(function() {

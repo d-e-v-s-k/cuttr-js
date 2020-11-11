@@ -1,8 +1,8 @@
 {
   "name": "cuttr",
-  "description": "Cuttr is a javascript plugin that truncates multi-line text content with multiple truncation methods and custom ellipsis.",
+  "description": "Cuttr is a javascript plugin that truncates multi-line string content with multiple truncation methods and custom ellipsis.",
   "main": "dist/cuttr.js",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "authors": [
     "DEVSK"
   ],

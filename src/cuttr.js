@@ -1,5 +1,5 @@
 /*!
- * Cuttr 1.1.2
+ * Cuttr 1.2.0
  * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
@@ -42,6 +42,7 @@
             length: 100,  //  truncation limit
             ending: '...',    //  truncation ending string
             loadedClass: 'cuttr--loaded', //  class to set when truncation finished
+            title: false,    //  add original content to elements title tag
             readMore: false, // read more button enabled/disabled
             readMoreText: 'read more',
             readLessText: 'read less',
@@ -88,7 +89,8 @@
                 const currentContent  = currentElement.innerHTML;
                 const truncateLength  = (currentElement.dataset.cuttrLength) ? currentElement.dataset.cuttrLength : self.options.length;
                 const truncateEnding  = (currentElement.dataset.cuttrEnding) ? currentElement.dataset.cuttrEnding : self.options.ending;
-                let trancatedContent;
+                const contentToTitle  = (currentElement.dataset.cuttrTitle) ? currentElement.dataset.cuttrTitle : self.options.title;
+                let truncatedContent;
 
                 //  add truncate-element index to element
                 currentElement.setAttribute(self.options.dataIndex, i);
@@ -97,8 +99,14 @@
                 self.options.originalContent.push(currentContent);
 
                 //  truncate content
-                trancatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding);
-                currentElement.innerHTML = trancatedContent;
+                truncatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding);
+
+                //  set title attr with original text content
+                if (contentToTitle)
+                    currentElement.title = currentElement.textContent.trim();
+
+                //  set new content
+                currentElement.innerHTML = truncatedContent;
 
                 //  add read-more button if current content is truncated
                 if (self.options.contentTruncationState[i]) {
@@ -297,7 +305,7 @@
             const readLessText        = (currentElement.dataset.cuttrReadmore) ? currentElement.dataset.cuttrReadless : self.options.readLessText;
             const truncateLength      = (currentElement.dataset.cuttrLength) ? currentElement.dataset.cuttrLength : self.options.length;
             const truncateEnding      = (currentElement.dataset.cuttrEnding) ? currentElement.dataset.cuttrEnding : self.options.ending;
-            let trancatedContent;
+            let truncatedContent;
 
             //  show content if its currently truncated
             if (!self.options.contentVisibilityState[thisIndex]) {
@@ -319,8 +327,8 @@
             } else {
 
                 //  truncate content
-                trancatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding);
-                currentElement.innerHTML = trancatedContent;
+                truncatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding);
+                currentElement.innerHTML = truncatedContent;
 
                 //  set visibility state
                 self.options.contentVisibilityState[thisIndex] = false;

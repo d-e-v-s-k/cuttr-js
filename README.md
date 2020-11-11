@@ -8,15 +8,15 @@
     <a href="https://www.gnu.org/licenses/gpl-3.0.html">
         <img alt="License" src="https://img.shields.io/badge/License-GPL-blue.svg">
     </a>
-    <a href="https://snyk.io/test/npm/cuttr/1.1.1">
-        <img src="https://snyk.io/test/npm/cuttr/1.1.1/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.0.2" style="max-width:100%;">
+    <a href="https://snyk.io/test/npm/cuttr/1.2.0">
+        <img src="https://snyk.io/test/npm/cuttr/1.2.0/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.2.0" style="max-width:100%;">
     </a>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K9X3RW27WJHWE&source=url">
         <img alt="License" src="https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg">
     </a>
 </p>
 
-<p align="center">Cuttr is a zero dependency, easy to use JS/jQuery library that truncates multiple line text content (Line Clampin’) to fit within given specifications. It adds an ending string like a ellipsis (...) to indicate that there is more text available than currently visible.</p>
+<p align="center">Cuttr is a zero dependency, easy to use JS / jQuery library that truncates multiple line text content (Line Clampin’) to fit within given specifications. It adds an ending string like a ellipsis (...) to indicate that there is more text available than currently visible.</p>
 
 * Multiple truncation methods
 * Truncate text without breaking the HTML <!-- * Option to maintain original text after truncation -->
@@ -36,7 +36,7 @@
 
 ### CDN
 
-Link directly to Cuttr files on [unpkg](https://unpkg.com).
+Link directly to Cuttr files on [unpkg](https://unpkg.com/cuttr).
 
 ``` html
 <script src="https://unpkg.com/cuttr@1/dist/cuttr.min.js"></script>
@@ -45,12 +45,12 @@ Link directly to Cuttr files on [unpkg](https://unpkg.com).
 
 ```
 
-Link directly to Cuttr files on [cdnjs](https://cdnjs.com).
+Link directly to Cuttr files on [cdnjs](https://cdnjs.com/libraries/cuttr).
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.1.1/cuttr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.2.0/cuttr.min.js"></script>
 <!-- or -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.1.1/cuttr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.2.0/cuttr.js"></script>
 
 ```
 
@@ -152,6 +152,10 @@ var truncateText = new Cuttr( '.container', {
     
     loadedClass: 'cuttr--loaded',
     // Class to set on truncated element when truncation finished
+
+    title: false,
+    // add original, full content to elements title attribute
+    // [true|false]
     
     readMore: false,
     // enables / disables the "read more" button

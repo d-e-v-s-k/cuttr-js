@@ -1,5 +1,5 @@
 /*!
- * Cuttr 1.1.2
+ * Cuttr 1.2.0
  * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
@@ -44,6 +44,8 @@
       //  truncation ending string
       loadedClass: 'cuttr--loaded',
       //  class to set when truncation finished
+      title: false,
+      //  add original content to elements title tag
       readMore: false,
       // read more button enabled/disabled
       readMoreText: 'read more',
@@ -88,14 +90,18 @@
         var currentContent = currentElement.innerHTML;
         var truncateLength = currentElement.dataset.cuttrLength ? currentElement.dataset.cuttrLength : self.options.length;
         var truncateEnding = currentElement.dataset.cuttrEnding ? currentElement.dataset.cuttrEnding : self.options.ending;
-        var trancatedContent = void 0; //  add truncate-element index to element
+        var contentToTitle = currentElement.dataset.cuttrTitle ? currentElement.dataset.cuttrTitle : self.options.title;
+        var truncatedContent = void 0; //  add truncate-element index to element
 
         currentElement.setAttribute(self.options.dataIndex, i); //  temporary save elements original content
 
         self.options.originalContent.push(currentContent); //  truncate content
 
-        trancatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding);
-        currentElement.innerHTML = trancatedContent; //  add read-more button if current content is truncated
+        truncatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding); //  set title attr with original text content
+
+        if (contentToTitle) currentElement.title = currentElement.textContent.trim(); //  set new content
+
+        currentElement.innerHTML = truncatedContent; //  add read-more button if current content is truncated
 
         if (self.options.contentTruncationState[i]) {
           if (self.options.readMore) addReadMore(currentElement);
@@ -262,7 +268,7 @@
       var readLessText = currentElement.dataset.cuttrReadmore ? currentElement.dataset.cuttrReadless : self.options.readLessText;
       var truncateLength = currentElement.dataset.cuttrLength ? currentElement.dataset.cuttrLength : self.options.length;
       var truncateEnding = currentElement.dataset.cuttrEnding ? currentElement.dataset.cuttrEnding : self.options.ending;
-      var trancatedContent; //  show content if its currently truncated
+      var truncatedContent; //  show content if its currently truncated
 
       if (!self.options.contentVisibilityState[thisIndex]) {
         //  replace content with original content from element at specific index
@@ -275,8 +281,8 @@
         //  truncate content if its shown completely currently
       } else {
         //  truncate content
-        trancatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding);
-        currentElement.innerHTML = trancatedContent; //  set visibility state
+        truncatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding);
+        currentElement.innerHTML = truncatedContent; //  set visibility state
 
         self.options.contentVisibilityState[thisIndex] = false;
         if (btnPosition == 'inside' && self.options.readMore) addReadMore(currentElement, true); //  update button text and aria
