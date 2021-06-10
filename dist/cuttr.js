@@ -1,12 +1,12 @@
 /*!
- * Cuttr 1.2.0
+ * Cuttr 1.3.0
  * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
  * or Cuttr Commercial License for commercial use
  * https://cuttr.kulahs.de/pricing/
  *
- * Copyright (C) 2020 https://cuttr.kulahs.de/ - A project by DEVSK
+ * Copyright (C) 2021 https://cuttr.kulahs.de/ - A project by DEVSK
  **/
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -31,6 +31,7 @@
      */
 
     self.options = {
+      //  global data
       elementsToTruncate: typeof el === 'string' ? document.querySelectorAll(el) : el,
       originalContent: [],
       contentVisibilityState: [],
@@ -54,7 +55,7 @@
       // [after|inside]
       readMoreBtnTag: 'button',
       //  read-more button tag [button|a|...]
-      readMoreBtnSelectorClass: 'cuttr-readmore',
+      readMoreBtnSelectorClass: 'cuttr__readmore',
       //  read-more button selector
       readMoreBtnAdditionalClasses: '',
       //  private options
@@ -69,7 +70,16 @@
       Object.keys(options).forEach(function (key) {
         self.options[key] = options[key];
       });
-    }
+    } //using jQuery initialization? Creating the $.fn.fullpage object
+
+    /*window.cuttr_api = self;
+     if(options.$){
+        console.log(self);
+        Object.keys(self).forEach(function (key) {
+            options.$.fn.Cuttr[key] = self[key];
+        });
+    }*/
+
 
     var init = function init() {
       prepare.call(this);
@@ -290,6 +300,148 @@
         event.target.innerHTML = readMoreText.replace(/<[^>]*>/g, ""); //event.target.setAttribute('aria-expanded', 'false');
       }
     }
+    /*
+        public function
+        expand / show original content
+    */
+
+
+    self.expandContent = function (selector, btnPosition) {
+      var currentElements; //  set specific element to expand or use current instance node
+
+      if (selector) {
+        currentElements = document.querySelectorAll(selector);
+      } else {
+        currentElements = self.options.elementsToTruncate;
+      }
+
+      for (var i = 0; i < currentElements.length; i++) {
+        var currentElement = currentElements[i];
+        var currentContent = currentElement.innerHTML;
+        var thisIndex = currentElement.dataset.cuttrIndex;
+        var readLessText = currentElement.dataset.cuttrReadmore ? currentElement.dataset.cuttrReadless : self.options.readLessText;
+        var thisBtnPosition = btnPosition ? btnPosition : self.options.readMoreBtnPosition;
+        var btnSelectorClass = '.' + self.options.readMoreBtnSelectorClass;
+        var btnExists = void 0; //  show content if its currently truncated
+
+        if (!self.options.contentVisibilityState[thisIndex]) {
+          //  replace content with original content from element at specific index
+          currentElement.innerHTML = self.options.originalContent[thisIndex]; //  set visibility state
+
+          self.options.contentVisibilityState[thisIndex] = true; //  read-more handling only if enabled
+
+          if (self.options.readMore) {
+            if (thisBtnPosition == 'inside') addReadMore(currentElement, true); //  check for button existence depending on btn position
+
+            if (thisBtnPosition == 'after') {
+              btnExists = currentElement.nextElementSibling;
+            } else if (thisBtnPosition == 'inside') {
+              btnExists = currentElement.querySelector(btnSelectorClass);
+            } //  update button text
+
+
+            if (btnExists) btnExists.innerHTML = readLessText.replace(/<[^>]*>/g, "");
+          }
+        }
+      }
+    };
+    /*
+        public function
+        truncate / hide original content
+    */
+
+
+    self.truncateContent = function (selector, btnPosition) {
+      var currentElements; //  set specific element to expand or use current instance node
+
+      if (selector) {
+        currentElements = document.querySelectorAll(selector);
+      } else {
+        currentElements = self.options.elementsToTruncate;
+      }
+
+      for (var i = 0; i < currentElements.length; i++) {
+        var currentElement = currentElements[i];
+        var currentContent = currentElement.innerHTML;
+        var thisIndex = currentElement.dataset.cuttrIndex;
+        var readMoreText = currentElement.dataset.cuttrReadmore ? currentElement.dataset.cuttrReadmore : self.options.readMoreText;
+        var thisBtnPosition = btnPosition ? btnPosition : self.options.readMoreBtnPosition;
+        var btnSelectorClass = '.' + self.options.readMoreBtnSelectorClass;
+        var truncateLength = currentElement.dataset.cuttrLength ? currentElement.dataset.cuttrLength : self.options.length;
+        var truncateEnding = currentElement.dataset.cuttrEnding ? currentElement.dataset.cuttrEnding : self.options.ending;
+        var truncatedContent = void 0;
+        var btnExists = void 0; //  hide content if its currently truncated
+
+        if (self.options.contentVisibilityState[thisIndex]) {
+          //  truncate content
+          truncatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding);
+          currentElement.innerHTML = truncatedContent; //  set visibility state
+
+          self.options.contentVisibilityState[thisIndex] = false; //  read-more handling only if enabled
+
+          if (self.options.readMore) {
+            if (thisBtnPosition == 'inside') addReadMore(currentElement, true); //  check for button existence depending on btn position
+
+            if (thisBtnPosition == 'after') {
+              btnExists = currentElement.nextElementSibling;
+            } else if (thisBtnPosition == 'inside') {
+              btnExists = currentElement.querySelector(btnSelectorClass);
+            } //  update button text
+
+
+            if (btnExists) btnExists.innerHTML = readMoreText.replace(/<[^>]*>/g, "");
+          }
+        }
+      }
+    };
+    /*
+        public function
+        restore the element to a pre-init state
+    */
+
+
+    self.destroy = function (selector, btnPosition) {
+      //  expand original content
+      self.expandContent(selector, btnPosition);
+      var currentElements; //  set specific element to expand or use current instance node
+
+      if (selector) {
+        currentElements = document.querySelectorAll(selector);
+      } else {
+        currentElements = self.options.elementsToTruncate;
+      }
+
+      for (var i = 0; i < currentElements.length; i++) {
+        var currentElement = currentElements[i];
+        var currentContent = currentElement.innerHTML;
+        var thisIndex = currentElement.dataset.cuttrIndex;
+        var thisBtnPosition = btnPosition ? btnPosition : self.options.readMoreBtnPosition;
+        var btnSelectorClass = '.' + self.options.readMoreBtnSelectorClass;
+        var btnExists = void 0; //  set visibility state
+
+        self.options.contentVisibilityState[thisIndex] = true; //  remove read-more  if enabled
+
+        if (self.options.readMore) {
+          if (thisBtnPosition == 'inside') addReadMore(currentElement, true); //  check for button existence depending on btn position
+
+          if (thisBtnPosition == 'after') {
+            btnExists = currentElement.nextElementSibling;
+          } else if (thisBtnPosition == 'inside') {
+            btnExists = currentElement.querySelector(btnSelectorClass);
+          } //  remove button
+
+
+          if (btnExists) btnExists.parentNode.removeChild(btnExists); //btnExists.remove();
+        } //  remove element classes
+
+
+        currentElement.classList.remove(self.options.loadedClass); //  remove truncate-element index from element
+
+        currentElement.removeAttribute(self.options.dataIndex); //  reset current truncation instance
+
+        currentElement = null;
+      }
+    };
 
     init();
     return self;
@@ -307,15 +459,21 @@ if (window.jQuery && window.Cuttr) {
     'use strict'; // No jQuery No Go
 
     if (!$ || !Cuttr) {
-      window.fp_utils.showError('error', 'jQuery is required to use the jQuery Cuttr adapter!');
+      //window.cuttr_utils.showError('error', 'jQuery is required to use the jQuery Cuttr adapter!');
+      console.log('ERROR - jQuery is required to use the jQuery Cuttr adapter!');
       return;
     }
 
     $.fn.Cuttr = function (options) {
-      options = $.extend({}, options, {
-        '$': $
+      return this.each(function (e, element) {
+        options = $.extend({}, options, {
+          '$': $
+        });
+
+        if (!$.data(element, 'Cuttr')) {
+          $.data(element, 'Cuttr', new Cuttr(element, options));
+        }
       });
-      var instance = new Cuttr(this, options);
     };
   })(window.jQuery, window.Cuttr);
 }

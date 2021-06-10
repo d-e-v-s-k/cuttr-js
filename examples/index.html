@@ -11,6 +11,7 @@
 <h2>Character truncation</h2>
 
 <p class="truncate-characters" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+<p class="truncate-characters custom-selector" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 
 <h2>Word truncation</h2>
 
@@ -18,7 +19,7 @@
 
 <h2>Sentence truncation</h2>
 
-<p class="truncate-sentences" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa? Aenean commodo ligula eget dolor! Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+<p class="truncate-sentences" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit! Aenean commodo ligula eget dolor. Aenean massa? Aenean commodo ligula eget dolor! Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 
 <h2>Word truncation with "Read more"</h2>
 
@@ -36,12 +37,18 @@
     <p>Dolor sit amet, <a href="#">link 2</a> consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
 </div>
 
+<div class="truncate-keep-html" >
+    <p>Lorem ipsum dolor sit amet, <a href="#">link</a> consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+    <img src="https://via.placeholder.com/728x90.png?text=Visit+cuttr.kulahs.de.+for+more+info" alt="image">
+    <p>Dolor sit amet, <a href="#">link 2</a> consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="../dist/cuttr.min.js"></script>
 <script>
 
-    new Cuttr('.truncate-characters', {
+    const truncateChar = new Cuttr('.truncate-characters', {
         //options here
         truncate: 'characters',
         length: 13
@@ -59,7 +66,7 @@
         length: 3
     });
 
-    new Cuttr('.truncate-words-read-more', {
+    let truncateReadMore = new Cuttr('.truncate-words-read-more', {
         //options here
         truncate: 'words',
         length: 5,
@@ -76,7 +83,7 @@
     });
 
     $(document).ready(function() {
-        $('.truncate-keep-html').Cuttr({
+        let truncateKeepHtml = $('.truncate-keep-html').Cuttr({
             //options here
             truncate: 'words',
             length: 10,
@@ -84,6 +91,11 @@
             readMoreText: 'Show more',
             readLessText: 'Show less'
         });
+
+        //  access an html element's prototype through jQuery's .data() function
+        //let data = truncateKeepHtml.data('Cuttr');
+        //data.expandContent();
+
     });
 
 </script>

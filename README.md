@@ -8,8 +8,8 @@
     <a href="https://www.gnu.org/licenses/gpl-3.0.html">
         <img alt="License" src="https://img.shields.io/badge/License-GPL-blue.svg">
     </a>
-    <a href="https://snyk.io/test/npm/cuttr/1.2.0">
-        <img src="https://snyk.io/test/npm/cuttr/1.2.0/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.2.0" style="max-width:100%;">
+    <a href="https://snyk.io/test/npm/cuttr/1.3.0">
+        <img src="https://snyk.io/test/npm/cuttr/1.3.0/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.3.0" style="max-width:100%;">
     </a>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K9X3RW27WJHWE&source=url">
         <img alt="License" src="https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg">
@@ -26,6 +26,11 @@
 [Demos online](https://cuttr.kulahs.de/examples.html) | [Codepen Example](https://codepen.io/herkulas/pen/xxZNXGv)
 
 ---
+Overview
+- [Install](https://github.com/d-e-v-s-k/cuttr-js#install)
+- [Usage](https://github.com/d-e-v-s-k/cuttr-js#usage)
+- [Options](https://github.com/d-e-v-s-k/cuttr-js#options)
+- [Methods](https://github.com/d-e-v-s-k/cuttr-js#methods)
 
 ## Install
 ### Download
@@ -48,9 +53,9 @@ Link directly to Cuttr files on [unpkg](https://unpkg.com/cuttr).
 Link directly to Cuttr files on [cdnjs](https://cdnjs.com/libraries/cuttr).
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.2.0/cuttr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.3.0/cuttr.min.js"></script>
 <!-- or -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.2.0/cuttr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.3.0/cuttr.js"></script>
 
 ```
 
@@ -134,8 +139,12 @@ $(document).ready(function() {
 ### Options
 
 ```javascript
-var truncateText = new Cuttr( '.container', {
+let truncateElement = new Cuttr( '.container', {
     // DEFAULTS LISTED
+
+    licenseKey: 'YOUR_KEY_HERE',
+    // use the license key provided on the purchase of the fullPage Commercial License
+    // if your project is open source and it is compatible with the GPLv3 license leave this field blank
     
     truncate: 'characters',
     // Truncate method
@@ -185,9 +194,73 @@ var truncateText = new Cuttr( '.container', {
 })
 ```
 
+### Methods
+Each plugin instance comes with some public methods to call.
+
+Example Initialization:
+
+```javascript
+let truncateElement = new Cuttr('.element', {
+    //options here
+    truncate: 'words',
+    length: 12
+});
+```
+
+After the plugin is fired, a series of methods are available.
+
+#### expandContent()
+Expands the given instance content.
+
+```javascript
+truncateElement.expandContent();
+```
+
+#### truncateContent()
+Truncates the given instance content.
+
+```javascript
+truncateElement.truncateContent();
+```
+
+#### destroy()
+Completely restores the Element to its pre-init state.
+
+```javascript
+truncateElement.destroy();
+```
+
+#### Method usage with jQuery
+In order to access the public methods via jQuery, you need to do it through jQuery's .data() function.
+
+Example:
+
+```javascript
+$(document).ready(function() {
+    
+    //  Cuttr initialization
+    let truncateElement = $('.element').Cuttr({
+        //options here
+        truncate: 'words',
+        length: 12
+    });
+
+    //  access html element's prototype via jQuery's .data()
+    let truncData = truncateKeepHtml.data('Cuttr');
+    //  call Cuttr method
+    truncData.expandContent();
+    
+});
+```
+
 ## Demos & Examples
 
 [Checkout our demos & examples page](https://cuttr.kulahs.de/examples.html)
+
+## Development
+This project uses [Gulp (v4)](http://gulpjs.com/) to minify the JS file.
+If you are unfamiliar with Gulp, check [this tutorial](https://travismaynard.com/writing/getting-started-with-gulp) on how to get started.<br />
+Run `gulp` in the command-line to put out a build on the files.
 
 ## Browser support
 The Cuttr javascript / jQuery string truncation plugin targets modern browsers that support ES5, meaning Internet Explorer 10 and earlier are not supported, but with IE11 and above you are fine.
