@@ -257,7 +257,10 @@ $(document).ready(function() {
 
 [Checkout our demos & examples page](https://cuttr.kulahs.de/examples.html)
 
-[Vue.js example](https://codepen.io/herkulas/pen/bGqmNeV)
+More examples on Codepen:
+* [vanilla Javascript example](https://codepen.io/herkulas/pen/oNLPXgy)
+* [Vue.js example](https://codepen.io/herkulas/pen/bGqmNeV)
+* [jQuery example](https://codepen.io/herkulas/pen/QWNwmRr)
 
 ## Development
 This project uses [Gulp (v4)](http://gulpjs.com/) to minify the JS file.
