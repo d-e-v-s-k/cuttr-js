@@ -31,6 +31,7 @@ Overview
 - [Usage](https://github.com/d-e-v-s-k/cuttr-js#usage)
 - [Options](https://github.com/d-e-v-s-k/cuttr-js#options)
 - [Methods](https://github.com/d-e-v-s-k/cuttr-js#methods)
+- [Examples](https://github.com/d-e-v-s-k/cuttr-js#demos--examples)
 
 ## Install
 ### Download
