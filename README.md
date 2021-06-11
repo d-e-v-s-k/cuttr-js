@@ -257,6 +257,8 @@ $(document).ready(function() {
 
 [Checkout our demos & examples page](https://cuttr.kulahs.de/examples.html)
 
+[Vue.js example](https://codepen.io/herkulas/pen/bGqmNeV)
+
 ## Development
 This project uses [Gulp (v4)](http://gulpjs.com/) to minify the JS file.
 If you are unfamiliar with Gulp, check [this tutorial](https://travismaynard.com/writing/getting-started-with-gulp) on how to get started.<br />
