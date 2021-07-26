@@ -31,6 +31,7 @@ Overview
 - [Usage](https://github.com/d-e-v-s-k/cuttr-js#usage)
 - [Options](https://github.com/d-e-v-s-k/cuttr-js#options)
 - [Methods](https://github.com/d-e-v-s-k/cuttr-js#methods)
+- [Examples](https://github.com/d-e-v-s-k/cuttr-js#demos--examples)
 
 ## Install
 ### Download
@@ -256,6 +257,11 @@ $(document).ready(function() {
 ## Demos & Examples
 
 [Checkout our demos & examples page](https://cuttr.kulahs.de/examples.html)
+
+More examples on Codepen:
+* [vanilla Javascript example](https://codepen.io/herkulas/pen/oNLPXgy)
+* [Vue.js example](https://codepen.io/herkulas/pen/bGqmNeV)
+* [jQuery example](https://codepen.io/herkulas/pen/QWNwmRr)
 
 ## Development
 This project uses [Gulp (v4)](http://gulpjs.com/) to minify the JS file.
