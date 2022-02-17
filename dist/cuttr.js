@@ -1,12 +1,12 @@
 /*!
- * Cuttr 1.3.1
+ * Cuttr 1.4.0
  * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
  * or Cuttr Commercial License for commercial use
  * https://cuttr.kulahs.de/pricing/
  *
- * Copyright (C) 2021 https://cuttr.kulahs.de/ - A project by DEVSK
+ * Copyright (C) 2022 https://cuttr.kulahs.de/ - A project by DEVSK
  **/
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -58,6 +58,9 @@
       readMoreBtnSelectorClass: 'cuttr__readmore',
       //  read-more button selector
       readMoreBtnAdditionalClasses: '',
+      //  callback functions
+      afterTruncate: function afterTruncate() {},
+      afterExpand: function afterExpand() {},
       //  private options
       dataIndex: 'data-cuttr-index' // cuttr index data attribute
 
@@ -70,16 +73,7 @@
       Object.keys(options).forEach(function (key) {
         self.options[key] = options[key];
       });
-    } //using jQuery initialization? Creating the $.fn.fullpage object
-
-    /*window.cuttr_api = self;
-     if(options.$){
-        console.log(self);
-        Object.keys(self).forEach(function (key) {
-            options.$.fn.Cuttr[key] = self[key];
-        });
-    }*/
-
+    }
 
     var init = function init() {
       prepare.call(this);
@@ -90,8 +84,14 @@
 
 
     function prepare() {
-      //  return if no target element defined
-      if (!self.options.elementsToTruncate) return; //  set element type depending on source
+      var isAuthorized = self.options && new RegExp('([\\d\\w]{8}-){3}[\\d\\w]{8}|^(?=.*?[A-Y])(?=.*?[a-y])(?=.*?[0-8])(?=.*?[#?!@$%^&*-]).{8,}$').test(self.options['li' + 'cen' + 'seK' + 'e' + 'y']) || document.domain.indexOf('cuttr' + '.' + 'kul' + 'ahs' + '.' + 'de') > -1; //  return if no target element defined
+
+      if (!self.options.elementsToTruncate) {
+        return;
+      } else {
+        displayWarnings(isAuthorized);
+      } //  set element type depending on source
+
 
       if (!('length' in self.options.elementsToTruncate)) self.options.elementsToTruncate = [self.options.elementsToTruncate]; //  loop through target elements to truncate
 
@@ -116,7 +116,10 @@
         if (self.options.contentTruncationState[i]) {
           if (self.options.readMore) addReadMore(currentElement);
           currentElement.classList += ' ' + self.options.loadedClass;
-        }
+        } //  here go the callbacks
+
+
+        self.options.afterTruncate.call(currentElement);
       }
     }
     /*
@@ -288,7 +291,9 @@
         if (btnPosition == 'inside' && self.options.readMore) addReadMore(currentElement, true); //  update button text and aria
 
         event.target.innerHTML = readLessText.replace(/<[^>]*>/g, ""); //event.target.setAttribute('aria-expanded', 'true');
-        //  truncate content if its shown completely currently
+        //  here go the callbacks
+
+        self.options.afterExpand.call(currentElement); //  truncate content if its shown completely currently
       } else {
         //  truncate content
         truncatedContent = truncateIt(currentElement, currentContent.trim(), truncateLength, truncateEnding);
@@ -298,6 +303,20 @@
         if (btnPosition == 'inside' && self.options.readMore) addReadMore(currentElement, true); //  update button text and aria
 
         event.target.innerHTML = readMoreText.replace(/<[^>]*>/g, ""); //event.target.setAttribute('aria-expanded', 'false');
+        //  here go the callbacks
+
+        self.options.afterTruncate.call(currentElement);
+      }
+    }
+    /**
+     * Displays warnings
+     */
+
+
+    function displayWarnings(isAuthorized) {
+      if (!isAuthorized) {
+        showError('error', 'Cuttr.js has a GPLv3 license and it requires a `licenseKey` option. Read about it here:');
+        showError('error', 'https://github.com/d-e-v-s-k/cuttr-js#options');
       }
     }
     /*
@@ -341,7 +360,10 @@
 
 
             if (btnExists) btnExists.innerHTML = readLessText.replace(/<[^>]*>/g, "");
-          }
+          } //  here go the callbacks
+
+
+          self.options.afterExpand.call(currentElement);
         }
       }
     };
@@ -370,7 +392,7 @@
         var truncateLength = currentElement.dataset.cuttrLength ? currentElement.dataset.cuttrLength : self.options.length;
         var truncateEnding = currentElement.dataset.cuttrEnding ? currentElement.dataset.cuttrEnding : self.options.ending;
         var truncatedContent = void 0;
-        var btnExists = void 0; //  hide content if its currently truncated
+        var btnExists = void 0; //  hide content if its currently fully visible
 
         if (self.options.contentVisibilityState[thisIndex]) {
           //  truncate content
@@ -390,7 +412,10 @@
 
 
             if (btnExists) btnExists.innerHTML = readMoreText.replace(/<[^>]*>/g, "");
-          }
+          } //  here go the callbacks
+
+
+          self.options.afterTruncate.call(currentElement);
         }
       }
     };
@@ -441,7 +466,16 @@
 
         currentElement = null;
       }
-    };
+    }; //utils
+
+    /*
+        shows console message
+    */
+
+
+    function showError(type, text) {
+      window.console && window.console[type] && window.console[type]('Cuttr: ' + text);
+    }
 
     init();
     return self;
@@ -450,7 +484,7 @@
   return Cuttr;
 });
 /**
- * jQuery adapter for Cuttr.js 1.1.0
+ * jQuery adapter for Cuttr.js 1.4.0
  */
 
 

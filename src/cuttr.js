@@ -1,12 +1,12 @@
 /*!
- * Cuttr 1.3.2
+ * Cuttr 1.4.0
  * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
  * or Cuttr Commercial License for commercial use
  * https://cuttr.kulahs.de/pricing/
  *
- * Copyright (C) 2021 https://cuttr.kulahs.de/ - A project by DEVSK
+ * Copyright (C) 2022 https://cuttr.kulahs.de/ - A project by DEVSK
  **/
 
 (function (root, factory) {
@@ -52,6 +52,10 @@
             readMoreBtnSelectorClass: 'cuttr__readmore', //  read-more button selector
             readMoreBtnAdditionalClasses: '',
 
+            //  callback functions
+            afterTruncate: function(){},
+            afterExpand: function(){},
+
             //  private options
             dataIndex: 'data-cuttr-index',   // cuttr index data attribute
         };
@@ -66,17 +70,6 @@
         }
 
 
-        //using jQuery initialization? Creating the $.fn.fullpage object
-        /*window.cuttr_api = self;
-
-        if(options.$){
-            console.log(self);
-            Object.keys(self).forEach(function (key) {
-                options.$.fn.Cuttr[key] = self[key];
-            });
-        }*/
-
-
         const init = function () {
             prepare.call(this);
         };
@@ -87,8 +80,14 @@
          */
         function prepare() {
 
+            const isAuthorized = self.options && new RegExp('([\\d\\w]{8}-){3}[\\d\\w]{8}|^(?=.*?[A-Y])(?=.*?[a-y])(?=.*?[0-8])(?=.*?[#?!@$%^&*-]).{8,}$').test(self.options['li'+'cen'+'seK' + 'e' + 'y']) || document.domain.indexOf('cuttr'+'.' +'kul' + 'ahs' + '.' + 'de') > -1;
+
             //  return if no target element defined
-            if (!self.options.elementsToTruncate) return;
+            if (!self.options.elementsToTruncate) {
+                return;
+            } else {
+                displayWarnings(isAuthorized);
+            }
 
             //  set element type depending on source
             if ( !('length' in self.options.elementsToTruncate) )
@@ -129,6 +128,9 @@
                     currentElement.classList += ' ' + self.options.loadedClass;
 
                 }
+
+                //  here go the callbacks
+                self.options.afterTruncate.call(currentElement);
 
             }
 
@@ -335,7 +337,10 @@
                 event.target.innerHTML = readLessText.replace(/<[^>]*>/g, "");
                 //event.target.setAttribute('aria-expanded', 'true');
 
-                //  truncate content if its shown completely currently
+                //  here go the callbacks
+                self.options.afterExpand.call(currentElement);
+
+            //  truncate content if its shown completely currently
             } else {
 
                 //  truncate content
@@ -352,6 +357,22 @@
                 event.target.innerHTML = readMoreText.replace(/<[^>]*>/g, "");
                 //event.target.setAttribute('aria-expanded', 'false');
 
+                //  here go the callbacks
+                self.options.afterTruncate.call(currentElement);
+
+            }
+
+        }
+
+
+        /**
+         * Displays warnings
+         */
+        function displayWarnings(isAuthorized) {
+
+            if (!isAuthorized) {
+                showError('error', 'Cuttr.js has a GPLv3 license and it requires a `licenseKey` option. Read about it here:');
+                showError('error', 'https://github.com/d-e-v-s-k/cuttr-js#options');
             }
 
         }
@@ -410,6 +431,9 @@
 
                     }
 
+                    //  here go the callbacks
+                    self.options.afterExpand.call(currentElement);
+
                 }
 
             }
@@ -445,7 +469,7 @@
                 let truncatedContent;
                 let btnExists;
 
-                //  hide content if its currently truncated
+                //  hide content if its currently fully visible
                 if (self.options.contentVisibilityState[thisIndex]) {
 
                     //  truncate content
@@ -473,6 +497,9 @@
                             btnExists.innerHTML = readMoreText.replace(/<[^>]*>/g, "");
 
                     }
+
+                    //  here go the callbacks
+                    self.options.afterTruncate.call(currentElement);
 
                 }
 
@@ -544,6 +571,15 @@
 
         }
 
+
+        //utils
+        /*
+            shows console message
+        */
+        function showError(type, text){
+            window.console && window.console[type] && window.console[type]('Cuttr: ' + text);
+        }
+
         init();
         return self;
     };
@@ -552,7 +588,7 @@
 
 
 /**
- * jQuery adapter for Cuttr.js 1.1.0
+ * jQuery adapter for Cuttr.js 1.4.0
  */
 if(window.jQuery && window.Cuttr){
     (function ($, Cuttr) {

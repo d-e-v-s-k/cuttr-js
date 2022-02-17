@@ -8,8 +8,8 @@
     <a href="https://www.gnu.org/licenses/gpl-3.0.html">
         <img alt="License" src="https://img.shields.io/badge/License-GPL-blue.svg">
     </a>
-    <a href="https://snyk.io/test/npm/cuttr/1.3.2">
-        <img src="https://snyk.io/test/npm/cuttr/1.3.2/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.3.1" style="max-width:100%;">
+    <a href="https://snyk.io/test/npm/cuttr/1.4.0">
+        <img src="https://snyk.io/test/npm/cuttr/1.4.0/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.3.1" style="max-width:100%;">
     </a>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K9X3RW27WJHWE&source=url">
         <img alt="License" src="https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg">
@@ -54,9 +54,9 @@ Link directly to Cuttr files on [unpkg](https://unpkg.com/cuttr).
 Link directly to Cuttr files on [cdnjs](https://cdnjs.com/libraries/cuttr).
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.3.2/cuttr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.4.0/cuttr.min.js"></script>
 <!-- or -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.3.2/cuttr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.4.0/cuttr.js"></script>
 
 ```
 
@@ -94,7 +94,9 @@ If you want to use Cuttr to develop commercial sites, themes, projects, and appl
 
 ### Open source license
 
-If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use Cuttr under the terms of the GPLv3.
+If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use Cuttr under the terms of the GPLv3.  
+
+The credit comments in the JavaScript files should be kept intact (even after combination or minification).
 
 [Read more about Cuttr's licenses](https://cuttr.kulahs.de/pricing.html).
 
@@ -144,8 +146,10 @@ let truncateElement = new Cuttr( '.container', {
     // DEFAULTS LISTED
 
     licenseKey: 'YOUR_KEY_HERE',
-    // use the license key provided on the purchase of the fullPage Commercial License
-    // if your project is open source and it is compatible with the GPLv3 license leave this field blank
+    // this option is compulsory 
+    // use the license key provided on the purchase of the Cuttr Commercial License
+    // if your project is open source and it is compatible with the GPLv3 license you can request a license key
+    // please read more about licenses here https://github.com/d-e-v-s-k/cuttr-js#license
     
     truncate: 'characters',
     // Truncate method
@@ -196,7 +200,7 @@ let truncateElement = new Cuttr( '.container', {
 ```
 
 ### Methods
-Each plugin instance comes with some public methods to call.
+Each plugin instance comes with some public methods to call.  See them in action inside the examples folder at methods.html.
 
 Example Initialization:
 
@@ -251,6 +255,47 @@ $(document).ready(function() {
     //  call Cuttr method
     truncData.expandContent();
     
+});
+```
+
+### Callbacks
+Each plugin instance provides some callbacks. See them in action inside the examples folder at callbacks.html.
+
+At plugin initialization, a series of callbacks are available:
+
+#### afterTruncate()
+Callback fired once the original content has been truncated.
+
+```javascript
+let truncateElement = new Cuttr('.element', {
+    //options here
+    truncate: 'words',
+    length: 12,
+    
+    //  callbacks
+    afterTruncate: function(){
+        let truncateElement = this;
+        console.log(this);
+        alert('"afterTruncate" callback fired!');
+    }
+});
+```
+
+#### afterExpand()
+Callback fired once the original content has been expanded.
+
+```javascript
+let truncateElement = new Cuttr('.element', {
+    //options here
+    truncate: 'words',
+    length: 12,
+    
+    //  callbacks
+    afterExpand: function(){
+        let truncateElement = this;
+        console.log(this);
+        alert('"afterExpand" callback fired!');
+    }
 });
 ```
 

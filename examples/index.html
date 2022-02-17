@@ -54,6 +54,8 @@
         length: 13
     });
 
+    truncateChar.expandContent();
+
     new Cuttr('.truncate-words', {
         //options here
         truncate: 'words',
@@ -91,11 +93,6 @@
             readMoreText: 'Show more',
             readLessText: 'Show less'
         });
-
-        //  access an html element's prototype through jQuery's .data() function
-        //let data = truncateKeepHtml.data('Cuttr');
-        //data.expandContent();
-
     });
 
 </script>
