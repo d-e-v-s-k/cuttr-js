@@ -28,9 +28,11 @@
 ---
 Overview
 - [Install](https://github.com/d-e-v-s-k/cuttr-js#install)
+- [License](https://github.com/d-e-v-s-k/cuttr-js#license)
 - [Usage](https://github.com/d-e-v-s-k/cuttr-js#usage)
 - [Options](https://github.com/d-e-v-s-k/cuttr-js#options)
 - [Methods](https://github.com/d-e-v-s-k/cuttr-js#methods)
+- [Callbacks](https://github.com/d-e-v-s-k/cuttr-js#callbacks)
 - [Examples](https://github.com/d-e-v-s-k/cuttr-js#demos--examples)
 
 ## Install
