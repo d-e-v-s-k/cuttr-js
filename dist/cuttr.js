@@ -1,5 +1,5 @@
 /*!
- * Cuttr 1.4.0
+ * Cuttr 1.4.1
  * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
@@ -22,6 +22,9 @@
     root.Cuttr = factory();
   }
 })(this, function () {
+  //  private global vars
+  var CUTTR_LICENSE = true; //  init Cuttr
+
   var Cuttr = function Cuttr(el, options) {
     'use strict';
 
@@ -314,7 +317,10 @@
 
 
     function displayWarnings(isAuthorized) {
-      if (!isAuthorized) {
+      if (!isAuthorized && CUTTR_LICENSE) {
+        //  declare global const to show error only once
+        CUTTR_LICENSE = false; //  show error message
+
         showError('error', 'Cuttr.js has a GPLv3 license and it requires a `licenseKey` option. Read about it here:');
         showError('error', 'https://github.com/d-e-v-s-k/cuttr-js#options');
       }

@@ -8,8 +8,8 @@
     <a href="https://www.gnu.org/licenses/gpl-3.0.html">
         <img alt="License" src="https://img.shields.io/badge/License-GPL-blue.svg">
     </a>
-    <a href="https://snyk.io/test/npm/cuttr/1.4.0">
-        <img src="https://snyk.io/test/npm/cuttr/1.4.0/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.3.1" style="max-width:100%;">
+    <a href="https://snyk.io/test/npm/cuttr/1.4.1">
+        <img src="https://snyk.io/test/npm/cuttr/1.4.1/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/npm/cuttr/1.3.1" style="max-width:100%;">
     </a>
     <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K9X3RW27WJHWE&source=url">
         <img alt="License" src="https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg">
@@ -56,9 +56,9 @@ Link directly to Cuttr files on [unpkg](https://unpkg.com/cuttr).
 Link directly to Cuttr files on [cdnjs](https://cdnjs.com/libraries/cuttr).
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.4.0/cuttr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.4.1/cuttr.min.js"></script>
 <!-- or -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.4.0/cuttr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cuttr/1.4.1/cuttr.js"></script>
 
 ```
 
