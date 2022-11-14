@@ -208,7 +208,7 @@
                 //  truncate full sentences
                 case 'sentences':
 
-                    const sentences = str.match(/[^\.!\?]+[\.!\?]+/g);
+                    const sentences = str.match(/[^\.!\?]+[\.!\?]+/g) ?? [];
 
                     //  check if content (string) is longer than truncation limit
                     if (sentences.length > length) {
