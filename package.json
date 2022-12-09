@@ -1,12 +1,12 @@
 {
   "name": "cuttr",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Cuttr is a javascript / jQuery plugin that truncates multi-line string content with multiple truncation methods and custom ellipsis.",
   "main": "dist/cuttr.js",
   "unpkg": "dist/cuttr.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "([ ! -f package-lock.json ] && npm install --package-lock-only --ignore-scripts --no-audit); npx npm-force-resolutions"
   },
   "resolutions": {
     "glob-parent": "^6.0.1",

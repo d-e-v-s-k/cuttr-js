@@ -1,5 +1,5 @@
 /*!
- * Cuttr 1.4.1
+ * Cuttr 1.4.3
  * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
@@ -131,6 +131,8 @@
 
 
     function truncateIt(thisElement, str, length, ending) {
+      var _str$match;
+
       var thisIndex = thisElement.dataset.cuttrIndex;
       var truncateMethod = thisElement.dataset.cuttrMethod ? thisElement.dataset.cuttrMethod : self.options.truncate; //  set defaults
 
@@ -181,7 +183,7 @@
         //  truncate full sentences
 
         case 'sentences':
-          var sentences = str.match(/[^\.!\?]+[\.!\?]+/g); //  check if content (string) is longer than truncation limit
+          var sentences = (_str$match = str.match(/[^\.!\?]+[\.!\?]+/g)) != null ? _str$match : []; //  check if content (string) is longer than truncation limit
 
           if (sentences.length > length) {
             //  set current contetn truncation true and return truncated string
@@ -490,7 +492,7 @@
   return Cuttr;
 });
 /**
- * jQuery adapter for Cuttr.js 1.4.0
+ * jQuery adapter for Cuttr.js 1.4.3
  */
 
 
