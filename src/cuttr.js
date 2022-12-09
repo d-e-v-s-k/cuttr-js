@@ -1,5 +1,5 @@
 /*!
- * Cuttr 1.4.1
+ * Cuttr 1.4.2
  * https://github.com/d-e-v-s-k/cuttr-js
  *
  * @license GPLv3 for open source use only
@@ -596,7 +596,7 @@
 
 
 /**
- * jQuery adapter for Cuttr.js 1.4.0
+ * jQuery adapter for Cuttr.js 1.4.2
  */
 if(window.jQuery && window.Cuttr){
     (function ($, Cuttr) {
